@@ -90,7 +90,8 @@ class doxygen(Task.Task):
 
 			# Override with any parameters passed to the task generator
 			if getattr(self.generator, 'pars', None):
-				for k, v in self.generator.pars.iteritems():
+				gen_pars = self.generator.pars
+				for k, v in getattr(gen_pars, 'iteritems', gen_pars.items)():
 					self.pars[k] = v
 
 			self.doxy_inputs = getattr(self, 'doxy_inputs', [])
